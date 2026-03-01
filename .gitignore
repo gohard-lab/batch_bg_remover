@@ -1,0 +1,9 @@
+# PyInstaller 빌드 결과물 (절대 올라가면 안 되는 무거운 파일들)
+build/
+dist/
+*.spec
+
+# 파이썬 캐시 및 가상환경 (찌꺼기 파일들)
+__pycache__/
+venv/
+.venv/

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "batch-bg-remover"
+version = "0.3.0"
+description = "대량 이미지 배경 제거 유틸리티 (GUI 지원)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "rembg[cli]>=2.0.0",
+    "onnxruntime>=1.14.0",
+    "Pillow>=9.0.0",
+    "tqdm>=4.65.0",
+    "tkinterdnd2>=0.3.0"  # 드래그 앤 드롭을 위한 패키지 추가
+]
+
+[project.scripts]
+bg-remove = "bg_remover.main:run"

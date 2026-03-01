@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: batch-bg-remover
+Version: 0.3.0
+Summary: 대량 이미지 배경 제거 유틸리티 (GUI 지원)
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: rembg[cli]>=2.0.0
+Requires-Dist: onnxruntime>=1.14.0
+Requires-Dist: Pillow>=9.0.0
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: tkinterdnd2>=0.3.0
+
+프로젝트명: 대량 이미지 배경 제거기 (Batch Background Remover)
+
+목표: 폴더 내 수십~수백 장의 이미지 배경을 클릭 한 번(명령어 한 줄)으로 투명하게 일괄 처리.
+
+주요 기능:
+
+지정된 입력 폴더의 모든 이미지(.png, .jpg 등) 자동 순회
+
+rembg 라이브러리를 통한 배경 제거
+
+처리 진행률 시각화 (진행 바 표시)
+
+결과물을 출력 폴더에 자동 저장
+
+의존성 관리: pyproject.toml 사용 (requirements.txt 미사용)

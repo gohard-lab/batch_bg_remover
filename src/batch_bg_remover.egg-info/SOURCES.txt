@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/batch_bg_remover.egg-info/PKG-INFO
+src/batch_bg_remover.egg-info/SOURCES.txt
+src/batch_bg_remover.egg-info/dependency_links.txt
+src/batch_bg_remover.egg-info/entry_points.txt
+src/batch_bg_remover.egg-info/requires.txt
+src/batch_bg_remover.egg-info/top_level.txt
+src/bg_remover/gui.py
+src/bg_remover/main.py
+src/bg_remover/processor.py

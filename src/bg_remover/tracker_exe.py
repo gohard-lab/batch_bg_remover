@@ -36,8 +36,9 @@ def get_location_data():
 
 def get_supabase_client():
     # 사용하시는 Supabase URL과 Key를 그대로 넣으시면 됩니다.
-    url = "본인의_SUPABASE_URL"
-    key = "본인의_SUPABASE_KEY"
+    url = "https://gkzbiacodysnrzbpvavm.supabase.co"
+    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdremJpYWNvZHlzbnJ6YnB2YXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NzE2MTgsImV4cCI6MjA4OTE0NzYxOH0.Lv5uVeNZOyo21tgyl2jjGcESoLl_iQTJYp4jdCwuYDU"
+
     return create_client(url, key)
 
 def log_app_usage(app_name="unknown_exe_app", action="app_executed"):

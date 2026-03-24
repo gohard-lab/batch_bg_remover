@@ -35,16 +35,20 @@ cd batch_bg_remover
 ```
 
 # 2. 패키지 설치 (가장 빠른 uv 사용 권장)
-`uv sync`
+```bash
+uv sync
+```
 
 # 3. 프로그램 실행
+```bash
 uv run python src/main.py
-
+```
 # 4. EXE 실행 파일 직접 빌드하기
+```bash
 uv run pyinstaller --noconsole --onefile --copy-metadata pymatting src/main.py
 ```
 
-* [**유튜브 영상 링크**]https://youtu.be/HzuSu2b_5N4
+* [**유튜브 영상 링크**] (https://youtu.be/HzuSu2b_5N4)
 
 📊 데이터 수집 안내
 ※ 본 프로그램은 더 나은 서비스 제공과 에러 수정을 위해 익명화된 최소한의 사용 통계(기능 클릭 수 등)를 수집합니다. (개인 식별 정보는 일절 수집하지 않습니다.)

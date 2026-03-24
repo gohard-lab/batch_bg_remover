@@ -48,6 +48,7 @@ uv run python src/main.py
 uv run pyinstaller --noconsole --onefile --copy-metadata pymatting src/main.py
 ```
 
+## 📺 Video Tutorial
 * [**유튜브 영상 링크**] (https://youtu.be/HzuSu2b_5N4)
 
 📊 데이터 수집 안내

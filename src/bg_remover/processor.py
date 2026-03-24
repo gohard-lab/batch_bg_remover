@@ -5,8 +5,8 @@ from PIL import Image
 
 def process_images(input_paths: list, output_folder: str, progress_callback=None) -> bool:
     """
-    제공된 이미지 파일 목록 또는 디렉토리 내의 이미지를 처리하여 배경을 제거한다.
-    UI 스레드와의 통신을 위해 progress_callback 함수를 활용한다.
+    Process a list of image files or directories to remove backgrounds.
+    Uses progress_callback to communicate with the UI thread.
     """
     output_path = Path(output_folder)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -14,7 +14,7 @@ def process_images(input_paths: list, output_folder: str, progress_callback=None
     valid_extensions = {'.jpg', '.jpeg', '.png'}
     image_files = []
 
-    # 입력값이 폴더인지 개별 파일들의 목록인지 판별하여 처리 대상 수집
+    # Collect target files
     for path_str in input_paths:
         p = Path(path_str)
         if p.is_dir():
@@ -22,7 +22,7 @@ def process_images(input_paths: list, output_folder: str, progress_callback=None
         elif p.is_file() and p.suffix.lower() in valid_extensions:
             image_files.append(p)
 
-    # 중복 제거
+    # Remove duplicates
     image_files = list(set(image_files))
     total_files = len(image_files)
 
@@ -39,11 +39,10 @@ def process_images(input_paths: list, output_folder: str, progress_callback=None
             output_filename = output_path / f"{img_path.stem}_rmbg.png"
             output_image.save(output_filename)
             
-            # UI 화면의 프로그레스 바를 업데이트하기 위한 무전(콜백) 발송
             if progress_callback:
                 progress_callback(idx, total_files)
                 
         except Exception as e:
-            print(f"[Error] 파일 처리 실패 ({img_path.name}): {e}")
+            print(f"[Error] Failed to process ({img_path.name}): {e}")
 
     return True

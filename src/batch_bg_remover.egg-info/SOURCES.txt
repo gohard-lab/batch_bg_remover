@@ -9,4 +9,5 @@ src/batch_bg_remover.egg-info/top_level.txt
 src/bg_remover/gui.py
 src/bg_remover/main.py
 src/bg_remover/processor.py
-src/bg_remover/tracker.py
+src/bg_remover/tracker_OLD.py
+src/bg_remover/tracker_exe.py

@@ -14,7 +14,8 @@ dependencies = [
     "tkinterdnd2>=0.3.0",
     "supabase>=2.3.4",
     "requests>=2.31.0",
-    "httpx>=0.26.0"
+    "httpx>=0.26.0",
+    "python-dotenv>=1.2.2",
 ]
 
 [project.scripts]

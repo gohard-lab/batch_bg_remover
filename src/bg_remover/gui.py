@@ -9,7 +9,6 @@ from pathlib import Path
 from tkinterdnd2 import TkinterDnD, DND_FILES
 
 from processor import process_images
-# 📡 우리가 만든 추적기 불러오기
 from tracker_exe import log_app_usage 
 
 if getattr(sys, 'frozen', False):
@@ -22,7 +21,7 @@ CONFIG_FILE = BASE_DIR / "config.json"
 class BgRemoverApp(TkinterDnD.Tk):
     def __init__(self):
         super().__init__()
-        self.title("AI 대량 이미지 배경 제거기")
+        self.title("AI Batch Background Remover")
         self.geometry("500x350")
         self.resizable(False, False)
         
@@ -32,15 +31,13 @@ class BgRemoverApp(TkinterDnD.Tk):
         self.load_config()
         self._build_ui()
         
-        # 📡 [센서 1] 시청자가 프로그램을 켰을 때 기록 (방문자 수 측정)
         log_app_usage("batch_bg_remover", "app_opened")
 
     def _build_ui(self):
-        # (기존 UI 구성 코드와 100% 동일하므로 생략 없이 원본 코드를 그대로 둡니다)
         self.drop_frame = tk.Frame(self, bg="#f0f0f0", bd=5, relief="solid")
         self.drop_frame.pack(pady=20, padx=20, fill=tk.BOTH, expand=True)
         
-        self.default_drop_text = "여기에 이미지 파일이나 폴더를 드래그 앤 드롭 하세요\n(또는 클릭하여 폴더 선택)"
+        self.default_drop_text = "Drag and drop images or folders here\n(or click to select)"
         self.drop_label = tk.Label(
             self.drop_frame, text=self.default_drop_text, bg="#f0f0f0", fg="#555555", font=("", 10)
         )
@@ -54,17 +51,17 @@ class BgRemoverApp(TkinterDnD.Tk):
         output_frame = tk.Frame(self)
         output_frame.pack(pady=5, padx=20, fill=tk.X)
         
-        tk.Label(output_frame, text="저장 폴더:").pack(side=tk.LEFT)
+        tk.Label(output_frame, text="Output Folder:").pack(side=tk.LEFT)
         tk.Entry(output_frame, textvariable=self.output_dir, state='readonly', width=35).pack(side=tk.LEFT, padx=5)
-        tk.Button(output_frame, text="경로 변경", command=self.select_output_folder).pack(side=tk.LEFT)
+        tk.Button(output_frame, text="Change Path", command=self.select_output_folder).pack(side=tk.LEFT)
 
-        self.status_var = tk.StringVar(value="대기 중...")
+        self.status_var = tk.StringVar(value="Ready...")
         tk.Label(self, textvariable=self.status_var).pack(pady=5)
         
         self.progress = Progressbar(self, orient=tk.HORIZONTAL, length=460, mode='determinate')
         self.progress.pack(pady=5)
 
-        self.start_btn = tk.Button(self, text="배경 제거 시작", command=self.start_processing, bg="#4CAF50", fg="white", font=("", 10, "bold"))
+        self.start_btn = tk.Button(self, text="Start Processing", command=self.start_processing, bg="#4CAF50", fg="white", font=("", 10, "bold"))
         self.start_btn.pack(pady=10, ipadx=10, ipady=5)
 
     def update_dropzone_ui(self, message):
@@ -76,31 +73,28 @@ class BgRemoverApp(TkinterDnD.Tk):
     def on_drop(self, event):
         files = self.tk.splitlist(event.data)
         self.input_paths = list(files)
-        self.status_var.set(f"{len(self.input_paths)}개의 항목이 선택되었습니다.")
-        self.update_dropzone_ui(f"✅ {len(self.input_paths)}개의 항목이 인식되었습니다!")
+        self.status_var.set(f"{len(self.input_paths)} items selected.")
+        self.update_dropzone_ui(f"✅ {len(self.input_paths)} items recognized!")
         
-        # 📡 [수정] 드래그 앤 드롭 방식임을 명시하고 파일 개수를 details에 담음
         log_app_usage("batch_bg_remover", "input_received", {"method": "drag_and_drop", "item_count": len(self.input_paths)})
 
     def select_input_folder(self):
-        folder = filedialog.askdirectory(title="입력 폴더 선택")
+        folder = filedialog.askdirectory(title="Select Input Folder")
         if folder:
             self.input_paths = [folder]
             folder_name = Path(folder).name
-            self.status_var.set(f"선택된 폴더: {folder_name}")
-            self.update_dropzone_ui(f"✅ '{folder_name}' 폴더가 인식되었습니다!")
+            self.status_var.set(f"Selected folder: {folder_name}")
+            self.update_dropzone_ui(f"✅ Folder '{folder_name}' recognized!")
             
-            # 📡 [수정] 폴더 선택 방식임을 명시
             log_app_usage("batch_bg_remover", "input_received", {"method": "folder_select", "item_count": 1})
 
     def select_output_folder(self):
-        folder = filedialog.askdirectory(title="출력(저장) 폴더 선택")
+        folder = filedialog.askdirectory(title="Select Output Folder")
         if folder:
             self.output_dir.set(folder)
             self.save_config()
 
     def load_config(self):
-        # (기존 코드와 동일)
         if CONFIG_FILE.exists():
             try:
                 with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
@@ -122,25 +116,24 @@ class BgRemoverApp(TkinterDnD.Tk):
     def update_progress(self, current, total):
         percent = (current / total) * 100
         self.progress['value'] = percent
-        self.status_var.set(f"처리 중... ({current}/{total})")
+        self.status_var.set(f"Processing... ({current}/{total})")
         self.update_idletasks()
 
     def start_processing(self):
         if not self.input_paths:
-            messagebox.showwarning("경고", "먼저 이미지 파일이나 폴더를 넣어주세요.")
+            messagebox.showwarning("Warning", "Please add images or a folder first.")
             return
         if not self.output_dir.get():
-            messagebox.showwarning("경고", "출력 폴더를 지정해 주세요.")
+            messagebox.showwarning("Warning", "Please specify an output folder.")
             return
 
-        # 📡 [센서 4] 작업 시작 버튼을 눌렀을 때 기록 (핵심 전환율 지표)
         log_app_usage("batch_bg_remover", "process_started")
 
         self.save_config()
         self.start_btn.config(state=tk.DISABLED)
         self.progress['value'] = 0
-        self.status_var.set("AI 모델 로딩 중...")
-        self.update_dropzone_ui("⚙️ 배경 제거 작업이 진행 중입니다...")
+        self.status_var.set("Loading AI model...")
+        self.update_dropzone_ui("⚙️ Background removal in progress...")
 
         thread = threading.Thread(target=self._run_process_thread)
         thread.daemon = True
@@ -154,13 +147,12 @@ class BgRemoverApp(TkinterDnD.Tk):
         )
         
         if success:
-            self.status_var.set("모든 배경 제거 작업이 완료되었습니다!")
-            messagebox.showinfo("완료", "작업이 성공적으로 끝났습니다.")
+            self.status_var.set("All tasks completed successfully!")
+            messagebox.showinfo("Success", "Processing finished successfully.")
             
-            # 📡 [센서 5] 누끼 따기 작업이 성공적으로 끝났을 때 기록
             log_app_usage("batch_bg_remover", "process_completed_successfully")
         else:
-            self.status_var.set("처리할 이미지를 찾지 못했습니다.")
+            self.status_var.set("No valid images found to process.")
             
         self.start_btn.config(state=tk.NORMAL)
         self.input_paths = [] 

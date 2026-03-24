@@ -2,6 +2,7 @@
 build/
 dist/
 *.spec
+.env
 
 # 실행 파일 배포용 폴더 (사용자님이 정하신 폴더 이름으로 작성)
 releases/

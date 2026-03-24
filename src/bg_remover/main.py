@@ -2,7 +2,7 @@ from gui import BgRemoverApp
 
 def run():
     """
-    GUI 환경으로 프로그램을 시작하는 메인 진입점.
+    Main entry point to start the application with GUI.
     """
     app = BgRemoverApp()
     app.mainloop()

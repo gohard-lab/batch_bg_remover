@@ -48,7 +48,7 @@ uv run pyinstaller --noconsole --onefile --copy-metadata pymatting src/main.py
 ## 📺 Video Tutorial
 Want to understand the code or see how this tool was built from scratch? Check out the full step-by-step developer guide on my YouTube channel.
 
-* [**Watch the Tutorial Video**]https://youtu.be/HzuSu2b_5N4
+* [**Watch the Tutorial Video**] (https://youtu.be/HzuSu2b_5N4)
 
 📊 Privacy & Transparency
 ※ This program collects minimal, anonymized usage statistics (e.g., feature click counts) to improve service and fix errors. No personally identifiable information is collected.

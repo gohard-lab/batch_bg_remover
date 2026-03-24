@@ -28,13 +28,14 @@ API 결제나 구독 없이 평생 무료로 사용할 수 있는 오프라인 A
 ## 💻 개발자용 실행 가이드
 직접 소스 코드를 실행하거나 수정하고 싶으신 분들을 위한 가이드입니다.
 
-```bash
 # 1. 저장소 클론
+```bash
 git clone [https://github.com/gohard-lab/batch_bg_remover.git](https://github.com/gohard-lab/batch_bg_remover.git)
 cd batch_bg_remover
+```
 
 # 2. 패키지 설치 (가장 빠른 uv 사용 권장)
-uv sync
+`uv sync`
 
 # 3. 프로그램 실행
 uv run python src/main.py

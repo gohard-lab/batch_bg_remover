@@ -3,6 +3,9 @@ build/
 dist/
 *.spec
 
+# 실행 파일 배포용 폴더 (사용자님이 정하신 폴더 이름으로 작성)
+releases/
+
 # 파이썬 캐시 및 가상환경 (찌꺼기 파일들)
 __pycache__/
 venv/

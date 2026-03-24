@@ -1,0 +1,1 @@
+uv run pyinstaller --noconsole --onefile --copy-metadata pymatting d:\My_Work\Git_hub\batch_bg_remover\src\bg_remover\main.py

@@ -51,9 +51,7 @@ Want to understand the code or see how this tool was built from scratch? Check o
 * [**Watch the Tutorial Video**] (https://youtu.be/HzuSu2b_5N4)
 
 📊 Privacy & Transparency
-
 ※ This program collects minimal, anonymized usage statistics (e.g., feature click counts) to improve service and fix errors. No personally identifiable information is collected.
 
 📄 License
-
 This project is open-source and available under the MIT License.

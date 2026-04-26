@@ -1,3 +1,4 @@
+
 from gui import BgRemoverApp
 
 def run():

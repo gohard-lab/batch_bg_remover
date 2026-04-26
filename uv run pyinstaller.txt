@@ -1,1 +1,1 @@
-uv run pyinstaller --noconsole --onefile --copy-metadata pymatting d:\My_Work\Git_hub\batch_bg_remover\src\bg_remover\main.py
+uv run pyinstaller --noconsole --onefile --copy-metadata pymatting --name bgRemover --add-data "..\..\.env;." d:\My_Work\Git_hub\batch_bg_remover\src\bg_remover\main.py  ; [System.Console]::Beep(400, 500)

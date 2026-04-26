@@ -16,6 +16,7 @@ dependencies = [
     "requests>=2.31.0",
     "httpx>=0.26.0",
     "python-dotenv>=1.2.2",
+    "pyside6>=6.11.0",
 ]
 
 [project.scripts]

@@ -11,6 +11,7 @@ Requires-Dist: supabase>=2.3.4
 Requires-Dist: requests>=2.31.0
 Requires-Dist: httpx>=0.26.0
 Requires-Dist: python-dotenv>=1.2.2
+Requires-Dist: pyside6>=6.11.0
 
 🌐 **Read this in other languages:** [English](README.md) | [🇰🇷 한국어 (Korean)](README_ko.md)
 
@@ -65,7 +66,9 @@ Want to understand the code or see how this tool was built from scratch? Check o
 * [**Watch the Tutorial Video**] (https://youtu.be/HzuSu2b_5N4)
 
 📊 Privacy & Transparency
+
 ※ This program collects minimal, anonymized usage statistics (e.g., feature click counts) to improve service and fix errors. No personally identifiable information is collected.
 
 📄 License
+
 This project is open-source and available under the MIT License.

@@ -50,10 +50,11 @@ Want to understand the code or see how this tool was built from scratch? Check o
 
 * [**Watch the Tutorial Video**] (https://youtu.be/WR_D_LISU7A)
 
-📊 Privacy & Transparency
+### 📊 Privacy & Transparency
 
 ※ This program collects minimal, anonymized usage statistics (e.g., feature click counts) to improve service and fix errors. No personally identifiable information is collected.
 
-📄 License
+### 📄 License
+YouTube Channel: [PolymathDev](https://www.youtube.com/@PolymathDev_KR)
 
-This project is open-source and available under the MIT License.
+Developer GitHub: [gohard-lab](https://github.com/gohard-lab)

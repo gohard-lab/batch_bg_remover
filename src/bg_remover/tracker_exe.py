@@ -2,9 +2,10 @@ import requests
 import platform
 import json
 import uuid
+import sys
 import os
 from supabase import create_client
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 
 def resource_path(relative_path):
@@ -29,7 +30,7 @@ def get_location_data():
     real_ip = get_real_client_ip()
     
     if not real_ip:
-        return None 
+        return {} # 💡 None 대신 빈 딕셔너리 반환으로 하단 에러 방지
 
     url = f"http://ip-api.com/json/{real_ip}?fields=status,country,regionName,city,lat,lon"
     try:
@@ -45,7 +46,8 @@ def get_location_data():
             }
     except Exception:
         pass
-    return None
+    
+    return {} # 💡 예외 발생 시에도 빈 딕셔너리 반환
 
 def get_supabase_client():
     url = os.getenv("SUPABASE_URL")
@@ -97,25 +99,26 @@ def log_app_usage(app_name="unknown_exe_app", action="app_executed", details=Non
             
         machine_id = get_or_create_machine_id()
 
-        kst = timezone(timedelta(hours=9))
-        korea_time = datetime.now(kst).strftime("%Y-%m-%d %H:%M:%S")
+        # 💡 [핵심 수정] 타임존 이중 계산 방지를 위해 명시적인 UTC 시간(ISO 포맷) 사용
+        utc_time = datetime.now(timezone.utc).isoformat()
         
         log_data = {
             "session_id": machine_id, 
             "app_name": app_name,
             "action": action,
-            "timestamp": korea_time, 
-            "country": loc_data['country'] if loc_data else "Unknown",
-            "region": loc_data['region'] if loc_data else "Unknown",
-            "city": loc_data['city'] if loc_data else "Unknown",
-            "lat": loc_data['lat'] if loc_data else 0.0,
-            "lon": loc_data['lon'] if loc_data else 0.0,
-            "details" : details,
+            "timestamp": utc_time, # 💡 UTC 시간 전송 (Supabase가 알아서 KST로 변환해 줌)
+            "country": loc_data.get('country', "Unknown"),
+            "region": loc_data.get('region', "Unknown"),
+            "city": loc_data.get('city', "Unknown"),
+            "lat": loc_data.get('lat', 0.0),
+            "lon": loc_data.get('lon', 0.0),
+            "details": details if details else {},
             "user_agent": user_agent,
             "ip_address": ip_address
         }
         
         client.table('usage_logs').insert(log_data, returning='minimal').execute()
         return True
-    except Exception:
+    except Exception as e:
+        print(f"Tracker Error: {e}")
         return False

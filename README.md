@@ -29,7 +29,7 @@ If you want to run from the source code or build it yourself:
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/gohard-lab/batch_bg_remover.git](https://github.com/gohard-lab/batch_bg_remover.git)
+git clone https://github.com/gohard-lab/batch_bg_remover.git
 cd batch_bg_remover
 ```
 ### 2. Install dependencies using uv (Fastest way)

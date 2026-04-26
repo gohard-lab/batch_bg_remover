@@ -29,7 +29,7 @@ API 결제나 구독 없이 평생 무료로 사용할 수 있는 오프라인 A
 
 ### 1. 저장소 클론
 ```bash
-git clone [https://github.com/gohard-lab/batch_bg_remover.git](https://github.com/gohard-lab/batch_bg_remover.git)
+git clone https://github.com/gohard-lab/batch_bg_remover.git
 cd batch_bg_remover
 ```
 
